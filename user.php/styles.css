@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f8ff; /* Màu nền trắng xanh nhạt */
+    margin: 0;
+    padding: 0;
+}
+
+.news-container {
+    width: 80%;
+    margin: auto;
+    padding: 10px 0;
+}
+
+.latest-news {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: rgb(206, 91, 154);
+    animation: blink 1s infinite;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Đưa nội dung về bên trái */
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+.main-news {
+    display: flex;
+    gap: 35px;
+    color: rgb(206, 91, 154);
+}
+
+.large-news {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.small-news-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 70%;
+}
+
+.small-news {
+    height: 195px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+.small-news:hover {
+    transform: scale(1.05);
+}
+
+
+
+.news-overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: rgb(223, 217, 217);
+    padding: 12px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    min-height: 100px;
+    text-align: left; /* Đưa nội dung về bên trái */
+}
+
+.news-overlay h2,
+.news-overlay h3,
+.news-overlay .date {
+    margin: 5px 0; /* Tạo khoảng cách giữa các dòng */
+    display: block; /* Đảm bảo mỗi phần tử nằm trên một dòng riêng */
+}
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Đẩy nút sang hai bên */
+    transform: translateY(-50%);
+    z-index: 2;
+    pointer-events: none; /* Đảm bảo không ảnh hưởng đến thao tác trên ảnh */
+}
+
+.carousel-buttons button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px; /* Điều chỉnh kích thước nút */
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+    width: 40px; /* Tăng chiều rộng */
+    height: 35px; /* Tăng chiều cao */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto; /* Cho phép click */
+}
+
+/* Đẩy nút sang sát mép hai bên */
+.carousel-buttons button:first-child {
+    margin-left: -10px; /* Đẩy nút trái ra sát mép */
+}
+
+.carousel-buttons button:last-child {
+    margin-right: -10px; /* Đẩy nút phải ra sát mép */
+}
+
+.carousel-buttons button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.large-news:hover {
+    animation: slideAnimation 3s infinite ease-in-out;
+}
+
+
+/* Hiệu ứng khi thêm vào giỏ hàng */
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.bounce {
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* Styles cho giỏ hàng */
+#cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e90ff;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+
+#cart-icon:hover {
+    transform: scale(1.1);
+    background-color: #0066cc;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff6b6b;
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+#cart-box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+#cart-box h4 {
+    color: #1e90ff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    font-size: 18px;
+}
+
+.cart-item {
+    transition: background-color 0.3s ease;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.cart-item:hover {
+    background-color: #f8f9fa;
+}
+
+.cart-item-name {
+    color: #333;
+    font-size: 14px;
+}
+
+.cart-item-price {
+    color: #1e90ff;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.cart-total {
+    font-size: 16px;
+    color: #333;
+}
+
+.cart-actions button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+#add-to-cart-notification {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#add-to-cart-notification i {
+    font-size: 18px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+
+/* Các style cũ đã được thay thế bởi style mới ở cuối file */
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.checkbox-group input {
+    transform: scale(1.2);
+}
+
+/* Các style cũ đã được thay thế bởi style mới ở cuối file */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.cart-header {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #ffb6c1; /* Hồng phấn */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Căn chỉnh đều */
+    gap: 10px; /* Tạo khoảng cách giữa icon, chữ và dấu X */
+    min-width: 140px; /* Đảm bảo đủ rộng để không bị xuống dòng */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.cart-header a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Khoảng cách giữa icon và chữ */
+    white-space: nowrap; /* Giữ chữ "Giỏ hàng" trên một dòng */
+}
+
+#clear-cart {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px; /* Giảm kích thước dấu ❌ */
+    color: red;
+    padding: 2px 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+}
+
+#clear-cart:hover {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+/* Hiệu ứng khi hover vào giỏ hàng */
+.cart-header:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Khi click vào giỏ hàng thì phóng to */
+.cart-header.active {
+    transform: scale(1.2);
+}
+
+/* Styles cho trang đăng nhập với màu chủ đạo xanh dương và trắng */
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 105, 217, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+    text-align: center;
+    border-top: 5px solid #1e90ff;
+}
+
+.container h2 {
+    color: #1e90ff;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4682b4;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #cce5ff;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+    background-color: #f8fbff;
+}
+
+.input-group input:focus {
+    border-color: #1e90ff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(30, 144, 255, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1e90ff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background: #0066cc;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+}
+
+p {
+    margin-top: 20px;
+    color: #555;
+}
+
+a {
+    color: #1e90ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #0066cc;
+    text-decoration: underline;
+}
+
